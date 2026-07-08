@@ -25,4 +25,12 @@ input[type=text],input[type=email]{width:100%;background:none;border:none;border
 .checks label{font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:0;margin-top:10px}
 button{display:block;margin:22px auto 0;padding:10px 34px;border:1px solid #fff;background:#fff;color:#111;font-family:'Italiana',serif}
 .footerlogo{margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255,255,.25)}
-.footerlogo img{width:240px;max-width:90%;filter:brightness(0) invert(1)}
+.footerlogo img{
+    display:block;
+    width:220px;
+    max-width:80%;
+    height:auto;
+    margin:0 auto;
+    filter:none;
+    background:transparent;
+}
