@@ -52,15 +52,22 @@ ROOM 413
 
 <section class="rsvp">
 <h2>When will you be joining us?</h2>
-<form>
-<label>FIRST NAME</label><input type="text">
-<label>LAST NAME</label><input type="text">
-<label>EMAIL ADDRESS</label><input type="email">
+<form
+action="https://script.google.com/macros/s/AKfycbzn9NljLxJzgw5-9ckNOhXgzi-gDYxZf8y1kuTNPsrXvNonzDdNwB6nvwLUx6lfcrGVNQ/exec"
+method="POST"
+target="hidden_iframe"
+onsubmit="setTimeout(function(){alert('Thank you! We can\'t wait to celebrate with you.');document.querySelector('form').reset();},500);"
+<label>FIRST NAME</label><input type="text" name="firstName" required>
+<label>LAST NAME</label><input type="text" name="lastName" required>
+<label>EMAIL ADDRESS</label><input type="email" name="email" required>
 <div class="checks">
-<label><input type="checkbox"> September 11 — Doors at 7:00 PM</label>
-<label><input type="checkbox"> September 12 — Doors at 2:00 PM</label>
-<label><input type="checkbox"> September 12 — Doors at 7:00 PM</label>
-<label><input type="checkbox"> September 13 — Doors at 7:00 PM</label>
+<label><input type="checkbox" name="sep11" value="TRUE"> September 11 — Doors at 7:00 PM</label>
+
+<label><input type="checkbox" name="sep12matinee" value="TRUE"> September 12 — Doors at 2:00 PM</label>
+
+<label><input type="checkbox" name="sep12evening" value="TRUE"> September 12 — Doors at 7:00 PM</label>
+
+<label><input type="checkbox" name="sep13" value="TRUE"> September 13 — Doors at 7:00 PM</label>
 </div>
 <button type="submit">RSVP</button>
 </form>
@@ -70,6 +77,11 @@ ROOM 413
 <img src="logo.png" alt="The Last Five Years logo">
 </div>
 </div>
+<iframe
+    name="hidden_iframe"
+    style="display:none;">
+</iframe>
+
 <script src="script.js"></script>
 </body>
 </html>
