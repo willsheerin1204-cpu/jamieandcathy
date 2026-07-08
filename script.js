@@ -8,54 +8,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     e.preventDefault();
 
-    const firstName = form.querySelectorAll('input[type="text"]')[0].value.trim();
-    const lastName = form.querySelectorAll('input[type="text"]')[1].value.trim();
-    const email = form.querySelector('input[type="email"]').value.trim();
+    const response = await fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        test: true
+      })
+    });
 
-    const checks = form.querySelectorAll('input[type="checkbox"]');
-
-    if (!firstName || !lastName || !email) {
-      alert("Please complete all fields.");
-      return;
-    }
-
-    if (![...checks].some(c => c.checked)) {
-      alert("Please select at least one performance.");
-      return;
-    }
-
-    const data = {
-      firstName,
-      lastName,
-      email,
-      sep11: checks[0].checked,
-      sep12matinee: checks[1].checked,
-      sep12evening: checks[2].checked,
-      sep13: checks[3].checked
-    };
-
-    try {
-
-     await fetch(SCRIPT_URL, {
-  method: "POST",
-  redirect: "follow",
-  headers: {
-    "Content-Type": "text/plain"
-  },
-  body: JSON.stringify(data)
-});
-
-      alert("Thank you! We can't wait to celebrate with you.");
-
-      form.reset();
-
-    } catch (err) {
-
-      alert(err);
-
-    }
+    console.log(response.status);
+    console.log(await response.text());
 
   });
 
-});
 });
