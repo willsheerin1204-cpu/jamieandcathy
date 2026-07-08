@@ -36,14 +36,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
 
-      await fetch(SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain"
-        },
-        body: JSON.stringify(data)
-      });
+     await fetch(SCRIPT_URL, {
+  method: "POST",
+  redirect: "follow",
+  headers: {
+    "Content-Type": "text/plain"
+  },
+  body: JSON.stringify(data)
+});
 
       alert("Thank you! We can't wait to celebrate with you.");
 
