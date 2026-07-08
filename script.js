@@ -8,36 +8,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
     e.preventDefault();
 
-    alert("Form submitted! Now contacting Google...");
+    const firstName = form.querySelectorAll('input[type="text"]')[0].value.trim();
+    const lastName = form.querySelectorAll('input[type="text"]')[1].value.trim();
+    const email = form.querySelector('input[type="email"]').value.trim();
+
+    const checks = form.querySelectorAll('input[type="checkbox"]');
+
+    if (!firstName || !lastName || !email) {
+      alert("Please complete all fields.");
+      return;
+    }
+
+    if (![...checks].some(c => c.checked)) {
+      alert("Please select at least one performance.");
+      return;
+    }
+
+    const data = {
+      firstName,
+      lastName,
+      email,
+      sep11: checks[0].checked,
+      sep12matinee: checks[1].checked,
+      sep12evening: checks[2].checked,
+      sep13: checks[3].checked
+    };
 
     try {
 
-      const response = await fetch(SCRIPT_URL,{
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json"
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain"
         },
-        body:JSON.stringify({
-          firstName:"Test",
-          lastName:"User",
-          email:"test@test.com",
-          sep11:true,
-          sep12matinee:false,
-          sep12evening:false,
-          sep13:false
-        })
+        body: JSON.stringify(data)
       });
 
-      const text = await response.text();
+      alert("Thank you! We can't wait to celebrate with you.");
 
-      alert(text);
+      form.reset();
 
-    } catch(err){
+    } catch (err) {
 
-      alert(err.toString());
+      alert(err);
 
     }
 
   });
 
+});
 });
